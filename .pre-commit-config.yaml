@@ -1,0 +1,33 @@
+repos:
+  # General File Hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace      # Trims trailing whitespace
+      - id: end-of-file-fixer        # Ensures files end with a newline
+      - id: check-yaml               # Checks YAML syntax
+      - id: check-added-large-files  # Prevents giant files from being committed
+      - id: debug-statements         # Checks for pdb/breakpoint()
+
+  # Import Sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 8.0.1
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--line-length", "200"] # Ensures isort and black don't conflict
+
+  # Code Formatting
+  - repo: https://github.com/psf/black
+    rev: 26.3.1
+    hooks:
+      - id: black # Standardizes code style and indents
+        args: ["--line-length", "200"]
+
+  # Linting (Style and Indent Checks)
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8 # Checks for PEP8 compliance (indents, etc.)
+        # max-line-length sets the limit; extend-ignore E203 prevents
+        # conflicts with how Black handles whitespace
+        args: ["--max-line-length=200", "--extend-ignore=E203"]
