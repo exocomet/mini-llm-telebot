@@ -39,9 +39,9 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    print(f"/message: {message.text}")
+    print(f"\033[1;30mmessage:\033[0m {message.text}")
     response = request_answer(message.text)
-    print(f"{response}")
+    print(f"\033[34manswer:\033[0m {response}")
     bot.reply_to(message, response)
 
 
